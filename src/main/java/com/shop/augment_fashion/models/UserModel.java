@@ -1,76 +1,44 @@
 package com.shop.augment_fashion.models;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Table(name = "TBL_USER")
 public class UserModel {
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Setter @Getter @Column(name="NID_USER")
     private int nid_user;
+
+    @Setter @Getter @Column(name="CFIRST_NAME")
     private String cfirst_name;
+
+    @Setter @Getter @Column(name="CSURNAMES")
     private String csurnames;
+
+    @Setter @Getter @Column(name="CNICKNAME")
     private String cnickname;
+
+    @Setter @Getter @Column(name="CEMAIL")
     private String cemail;
+
+    @Setter @Getter @Column(name="CPASSWORD")
     private String cpassword;
+
+    @Setter @Getter @Column(name="NROLE")
     private int nrole;
+
+    @Setter @Getter @Column(name="NID_ADDRESS")
     private int nid_Address;
 
-    public int getNid_user() {
-        return nid_user;
-    }
-
-    public void setNid_user(int nid_user) {
-        this.nid_user = nid_user;
-    }
-
-    public String getCfirst_name() {
-        return cfirst_name;
-    }
-
-    public void setCfirst_name(String cfirst_name) {
-        this.cfirst_name = cfirst_name;
-    }
-
-    public String getCsurnames() {
-        return csurnames;
-    }
-
-    public void setCsurnames(String csurnames) {
-        this.csurnames = csurnames;
-    }
-
-    public String getCnickname() {
-        return cnickname;
-    }
-
-    public void setCnickname(String cnickname) {
-        this.cnickname = cnickname;
-    }
-
-    public String getCemail() {
-        return cemail;
-    }
-
-    public void setCemail(String cemail) {
-        this.cemail = cemail;
-    }
-
-    public String getCpassword() {
-        return cpassword;
-    }
-
-    public void setCpassword(String cpassword) {
-        this.cpassword = cpassword;
-    }
-
-    public int getNrole() {
-        return nrole;
-    }
-
-    public void setNrole(int nrole) {
-        this.nrole = nrole;
-    }
-
-    public int getNid_Address() {
-        return nid_Address;
-    }
-
-    public void setNid_Address(int nid_Address) {
-        this.nid_Address = nid_Address;
-    }
+    @Setter @Getter @Column(name="CNUMBER_CREDIT_CARD")
+    private String cnumber_credit_card;
 }
