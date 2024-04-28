@@ -1,5 +1,9 @@
 package com.shop.augment_fashion.models;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +14,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "TBL_USER")
+@Table(name = "TBL_USERS")
 public class UserModel {
 
     @Id
@@ -41,4 +45,14 @@ public class UserModel {
 
     @Setter @Getter @Column(name="CNUMBER_CREDIT_CARD")
     private String cnumber_credit_card;
+    
+    @Setter @Getter @Column(name="BENABLE")
+    private Boolean benable;
+
+    @Setter @Getter @Column(name="DREGISTRATION_DATE")
+    @CreationTimestamp
+    private LocalDateTime dregistration_date;
+    
+    @Setter @Getter @Column(name="DCANCELLATION_DATE")
+    private LocalDateTime dcancellation_date;
 }
