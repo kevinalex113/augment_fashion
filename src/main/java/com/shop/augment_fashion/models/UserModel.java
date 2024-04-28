@@ -22,7 +22,7 @@ public class UserModel {
     @Setter @Getter @Column(name="NID_USER")
     private int nid_user;
 
-    @Setter @Getter @Column(name="CFIRST_NAME")
+    @Setter @Getter @Column(name="CFIRST_NAMES")
     private String cfirst_name;
 
     @Setter @Getter @Column(name="CSURNAMES")
