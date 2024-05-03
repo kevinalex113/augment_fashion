@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.shop.augment_fashion.models.CategoriesModel;
 
-public interface CartRepository{
-    void addCategory(CategoriesModel category);
+public interface CategoriesRepository{
+    void addCategory(String newCategory);
 
     List<CategoriesModel> obtainCategories(int nid_clothes);
 
-    void updateCataegory(int nid_clothes, string ccategory);
+    void updateCataegory(String updCategory);
 
-    void deleteCategory(int nid_clothes, string ccategory);
+    void deleteCategory(String delCategory);
 }

@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.shop.augment_fashion.models.ClothesModel;
 
-public interface CartRepository{
-    void addClothes(ClothesModel clothes);
+public interface ClothesRepository{
+    void addClothes(String newClothes);
 
     List<ClothesModel> obtainClothes(int nid_clothes);
 

@@ -5,11 +5,11 @@ import java.util.List;
 import com.shop.augment_fashion.models.CartModel;
 
 public interface CartRepository{
-    void addCart(CartModel cart);
+    void addCart(String newCart);
 
     List<CartModel> obtainItems(int nid_user);
 
-    void updateItem(int nid_user, int nid_clothes);
+    void updateItem(String newCart);
 
-    void deleteItem(int nid_user, int nid_clothes);
+    void deleteItem(String delCart);
 }
