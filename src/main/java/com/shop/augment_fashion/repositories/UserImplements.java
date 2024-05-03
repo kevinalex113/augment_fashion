@@ -57,10 +57,10 @@ public class UserImplements implements UserRepository{
         userM.setCnickname(json.getString("cnickname"));
         userM.setCemail(json.getString("cemail"));
         userM.setCpassword(json.getString("cpassword"));
-        userM.setNrole(json.getInt("nrole"));
+        userM.setNrole(2);
         userM.setNid_Address(json.getInt("nid_Address"));
         userM.setCnumber_credit_card(json.getString("cnumber_credit_card"));
-        userM.setBenable(json.getBoolean("benable"));
+        userM.setBenable(true);
 
         entityManager.merge(userM);
     }

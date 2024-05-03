@@ -1,4 +1,4 @@
-package com.shop.augment_fashion.user_controllers;
+package com.shop.augment_fashion.controllers;
 
 import java.util.List;
 
