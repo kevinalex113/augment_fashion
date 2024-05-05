@@ -49,17 +49,16 @@ public class UserImplements implements UserRepository{
 
     @Override
     @Transactional
-    public void newUser(String newUser){
-        JSONObject json = new JSONObject(newUser);
+    public void newUser(JSONObject newUser, int nid_address){
         UserModel userM = new UserModel();
-        userM.setCfirst_name(json.getString("cfirst_name"));
-        userM.setCsurnames(json.getString("csurnames"));
-        userM.setCnickname(json.getString("cnickname"));
-        userM.setCemail(json.getString("cemail"));
-        userM.setCpassword(json.getString("cpassword"));
+        userM.setCfirst_name(newUser.getString("cfirst_names"));
+        userM.setCsurnames(newUser.getString("csurnames"));
+        userM.setCnickname(newUser.getString("cnickname"));
+        userM.setCemail(newUser.getString("cemail"));
+        userM.setCpassword(newUser.getString("cpassword"));
         userM.setNrole(2);
-        userM.setNid_Address(json.getInt("nid_Address"));
-        userM.setCnumber_credit_card(json.getString("cnumber_credit_card"));
+        userM.setNid_Address(nid_address);
+        userM.setCnumber_credit_card(newUser.getString("cnumber_credit_card"));
         userM.setBenable(true);
 
         entityManager.merge(userM);

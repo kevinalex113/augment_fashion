@@ -2,8 +2,14 @@ package com.shop.augment_fashion.repositories;
 
 import java.util.List;
 
+import org.json.JSONObject;
+
 import com.shop.augment_fashion.models.AddressModel;
 
+/**
+ *
+ * @author EduardoBautista
+ */
 public interface AddressRepository {
     List<AddressModel> getAddresses();
 
@@ -11,7 +17,7 @@ public interface AddressRepository {
 
     void delAddress(int nid_address);
 
-    void newAddress(String newAddress);
+    JSONObject newAddress(JSONObject newAddress);
 
     void updAddress(String updaAddress);
 }
