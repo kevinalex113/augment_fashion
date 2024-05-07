@@ -14,7 +14,7 @@ public interface UserRepository {
 
     void delUser(int nid_user);
 
-    void newUser(JSONObject newUser, int nid_address);
+    JSONObject newUser(JSONObject newUser, int nid_address, JSONObject jsonResponse);
 
     void updUser(String updaUser);
 }

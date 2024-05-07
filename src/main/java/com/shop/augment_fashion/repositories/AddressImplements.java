@@ -20,8 +20,6 @@ public class AddressImplements implements AddressRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    private JSONObject jsonResponse;
-
     @SuppressWarnings("unchecked")
     @Override
     @Transactional
@@ -49,62 +47,62 @@ public class AddressImplements implements AddressRepository {
     @SuppressWarnings("unchecked")
     @Override
     @Transactional
-    public JSONObject newAddress(JSONObject newAddress){
-        jsonResponse=new JSONObject();
+    public JSONObject newAddress(JSONObject newAddress, JSONObject jsonResponse){
+        
         try{
-            String query = "FROM AddressModel WHERE "
-            +"cstreet = '"+ newAddress.getString("cstreet")
-            +"' AND coutdoor_number = '" + newAddress.getString("coutdoor_number")
-            +"' AND cinterior_number = '" + newAddress.getString("cinterior_number")
-            +"' AND ccologne = '" + newAddress.getString("ccologne")
-            +"' AND ctown_hall = '" + newAddress.getString("ctown_hall")
-            +"' AND cstate = '"+ newAddress.getString("cstate")
-            +"' AND ccountry = '" + newAddress.getString("ccountry")
-            +"' AND benable = True ";
-
-            List<AddressModel> lstAddress = entityManager.createQuery(query).getResultList();
-
-            if(lstAddress.isEmpty()){
-                AddressModel address = new AddressModel();
-                address.setCstreet(newAddress.getString("cstreet"));
-                address.setCoutdoor_number(newAddress.getString("coutdoor_number"));
-                address.setCinterior_number(newAddress.getString("cinterior_number"));
-                address.setCcologne(newAddress.getString("ccologne"));
-                address.setCtown_hall(newAddress.getString("ctown_hall"));
-                address.setCstate(newAddress.getString("cstate"));
-                address.setCcountry(newAddress.getString("ccountry"));
-                address.setBenable(true);
-
-                entityManager.merge(address);
-
-                query = "FROM AddressModel WHERE "
-                +"cstreet = '"+ address.getCstreet()
-                +"' AND coutdoor_number = '" + address.getCoutdoor_number()
-                +"' AND cinterior_number = '" + address.getCinterior_number()
-                +"' AND ccologne = '" + address.getCcologne()
-                +"' AND ctown_hall = '" + address.getCtown_hall() 
-                +"' AND cstate = '"+address.getCstate()
-                +"' AND ccountry = '" + address.getCcountry()
+            if(!newAddress.toString().contains("cstreet") || !newAddress.toString().contains("coutdoor_number") || !newAddress.toString().contains("cinterior_number") || !newAddress.toString().contains("ccologne") || !newAddress.toString().contains("ctown_hall") || !newAddress.toString().contains("cstate") || !newAddress.toString().contains("ccountry")){
+                jsonResponse.put("codeAddress", 401);
+                jsonResponse.put("messageAddress","[AddressImplement] some name within the JSON is not valid");
+            } else{
+                String query = "FROM AddressModel WHERE "
+                +"cstreet = '"+ newAddress.getString("cstreet")
+                +"' AND coutdoor_number = '" + newAddress.getString("coutdoor_number")
+                +"' AND cinterior_number = '" + newAddress.getString("cinterior_number")
+                +"' AND ccologne = '" + newAddress.getString("ccologne")
+                +"' AND ctown_hall = '" + newAddress.getString("ctown_hall")
+                +"' AND cstate = '"+ newAddress.getString("cstate")
+                +"' AND ccountry = '" + newAddress.getString("ccountry")
                 +"' AND benable = True ";
 
-                lstAddress = entityManager.createQuery(query).getResultList();
-                
-                jsonResponse.put("code", 200);
-                jsonResponse.put("nid_address", lstAddress.get(0).getNid_address());
-                jsonResponse.put("message","[AddressImplement] Address Created");
-            }else{
-                jsonResponse.put("code", 200);
-                jsonResponse.put("nid_address", lstAddress.get(0).getNid_address());
-                jsonResponse.put("message","[AddressImplement] Address Obtained");
+                List<AddressModel> lstAddress = entityManager.createQuery(query).getResultList();
+
+                if(lstAddress.isEmpty()){
+                    AddressModel address = new AddressModel();
+                    address.setCstreet(newAddress.getString("cstreet"));
+                    address.setCoutdoor_number(newAddress.getString("coutdoor_number"));
+                    address.setCinterior_number(newAddress.getString("cinterior_number"));
+                    address.setCcologne(newAddress.getString("ccologne"));
+                    address.setCtown_hall(newAddress.getString("ctown_hall"));
+                    address.setCstate(newAddress.getString("cstate"));
+                    address.setCcountry(newAddress.getString("ccountry"));
+                    address.setBenable(true);
+
+                    entityManager.merge(address);
+
+                    query = "FROM AddressModel WHERE "
+                    +"cstreet = '"+ address.getCstreet()
+                    +"' AND coutdoor_number = '" + address.getCoutdoor_number()
+                    +"' AND cinterior_number = '" + address.getCinterior_number()
+                    +"' AND ccologne = '" + address.getCcologne()
+                    +"' AND ctown_hall = '" + address.getCtown_hall() 
+                    +"' AND cstate = '"+address.getCstate()
+                    +"' AND ccountry = '" + address.getCcountry()
+                    +"' AND benable = True ";
+
+                    lstAddress = entityManager.createQuery(query).getResultList();
+                    
+                    jsonResponse.put("codeAddress", 200);
+                    jsonResponse.put("nid_address", lstAddress.get(0).getNid_address());
+                    jsonResponse.put("messageAddress","[AddressImplement] Address Created");
+                }else{
+                    jsonResponse.put("codeAddress", 200);
+                    jsonResponse.put("nid_address", lstAddress.get(0).getNid_address());
+                    jsonResponse.put("messageAddress","[AddressImplement] Address Obtained");
+                }
             }
-            
-            
         }catch(JSONException e){
-            jsonResponse.put("code", 400);
-            jsonResponse.put("message","[AddressImplement] Invalid syntax for this request was provided");
-        }catch(Exception e){
-            jsonResponse.put("code", 409);
-            jsonResponse.put("message","[AddressImplement] An unexpected error occurred");
+            jsonResponse.put("codeAddress", 400);
+            jsonResponse.put("messageAddress","[AddressImplement] JSONException");
         }
         return jsonResponse;
     }

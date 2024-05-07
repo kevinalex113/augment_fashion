@@ -28,14 +28,20 @@ public class UserController {
     private AddressRepository address;
 
     @RequestMapping(value = "/Users",method=RequestMethod.POST)
-    public JSONObject insertUser(@RequestBody String newUser){
+    public String insertUser(@RequestBody String newUser){
         JSONObject jsonUser, jsonAddress, jsonResponse;
         jsonUser=new JSONObject(newUser);
         jsonAddress= jsonUser.getJSONObject("oaddress");
-        jsonResponse = address.newAddress(jsonAddress);
-        user.newUser(jsonUser,jsonResponse.getInt("nid_address"));
+        jsonResponse=address.newAddress(jsonAddress, new JSONObject());
+        if(jsonResponse.getInt("codeAddress")==200){
+            int valor = jsonResponse.getInt("nid_address");
+            jsonResponse=user.newUser(jsonUser,valor, jsonResponse);
+        }else{
+            jsonResponse.put("codeController",400);
+            jsonResponse.put("messageController", "[UsserController] nid_address was not obtained due to some error in the creation of the address object ");
+        }
 
-        return jsonResponse;
+        return jsonResponse.toString();
     }
 
     @RequestMapping(value = "/Users",method=RequestMethod.GET)
