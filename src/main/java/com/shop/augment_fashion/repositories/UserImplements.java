@@ -52,36 +52,35 @@ public class UserImplements implements UserRepository{
     @Transactional
     @SuppressWarnings("unchecked")
     public JSONObject newUser(JSONObject newUser, int nid_address, JSONObject jsonResponse){
-        try{
-            if(!newUser.toString().contains("cfirst_names") || !newUser.toString().contains("csurnames") || !newUser.toString().contains("cnickname") || !newUser.toString().contains("cpassword") || !newUser.toString().contains("cnumber_credit_card")){
-                jsonResponse.put("codeUser", 401);
-                jsonResponse.put("messageUser","[UserImplement] some name within the JSON is not valid");
-            }else{
-                String queryMail = "FROM UserModel WHERE "
-                +"cemail = '"+ newUser.getString("cemail")+"'";
-                List<UserModel> lstUserMail = entityManager.createQuery(queryMail).getResultList();
+        if(!newUser.toString().contains("cfirst_names") || !newUser.toString().contains("csurnames") || !newUser.toString().contains("cnickname") || !newUser.toString().contains("cpassword") || !newUser.toString().contains("cnumber_credit_card")){
+            jsonResponse.put("codeUser", 401);
+            jsonResponse.put("messageUser","[UserImplement] some name within the JSON is not valid");
+        }else{
+            String queryMail = "FROM UserModel WHERE "
+            +"cemail = '"+ newUser.getString("cemail")+"'";
+            List<UserModel> lstUserMail = entityManager.createQuery(queryMail).getResultList();
 
                 String queryNickname = "FROM UserModel WHERE "
                 +"cnickname = '"+ newUser.getString("cnickname")+"'";
                 List<UserModel> lstUserNickname = entityManager.createQuery(queryNickname).getResultList();
 
-                if(!lstUserMail.isEmpty()){
-                    jsonResponse.put("codeUser", 406);
-                    jsonResponse.put("messageUser","[UserImplement] The email already exists");
-                }else if(!lstUserNickname.isEmpty()){
-                    jsonResponse.put("codeUser", 406);
-                    jsonResponse.put("messageUser","[UserImplement] The nickname already exists");
-                }else{
-                    UserModel userM = new UserModel();
-                    userM.setCfirst_name(newUser.getString("cfirst_names"));
-                    userM.setCsurnames(newUser.getString("csurnames"));
-                    userM.setCnickname(newUser.getString("cnickname"));
-                    userM.setCemail(newUser.getString("cemail"));
-                    userM.setCpassword(newUser.getString("cpassword"));
-                    userM.setNrole(2);
-                    userM.setNid_Address(nid_address);
-                    userM.setCnumber_credit_card(newUser.getString("cnumber_credit_card"));
-                    userM.setBenable(true);
+            if(!lstUserMail.isEmpty()){
+                jsonResponse.put("codeUser", 406);
+                jsonResponse.put("messageUser","[UserImplement] The email already exists");
+            }else if(!lstUserNickname.isEmpty()){
+                jsonResponse.put("codeUser", 406);
+                jsonResponse.put("messageUser","[UserImplement] The nickname already exists");
+            }else{
+                UserModel userM = new UserModel();
+                userM.setCfirst_name(newUser.getString("cfirst_names"));
+                userM.setCsurnames(newUser.getString("csurnames"));
+                userM.setCnickname(newUser.getString("cnickname"));
+                userM.setCemail(newUser.getString("cemail"));
+                userM.setCpassword(newUser.getString("cpassword"));
+                userM.setNrole(2);
+                userM.setNid_Address(nid_address);
+                userM.setCnumber_credit_card(newUser.getString("cnumber_credit_card"));
+                userM.setBenable(true);
 
                     entityManager.merge(userM);
 
