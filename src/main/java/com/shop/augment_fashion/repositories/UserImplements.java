@@ -50,7 +50,7 @@ public class UserImplements implements UserRepository{
     @Override
     @Transactional
     public JSONObject newUser(JSONObject newUser, int nid_address, JSONObject jsonResponse){
-        if(!newUser.toString().contains("cfirst_names") || !newUser.toString().contains("csurnames") || !newUser.toString().contains("cnickname") || !newUser.toString().contains("cpassword") || !newUser.toString().contains("cnumber_credit_card")){
+        if(!newUser.toString().contains("cfirst_names") || !newUser.toString().contains("csurnames") || !newUser.toString().contains("cnickname") || !newUser.toString().contains("cphone") || !newUser.toString().contains("cpassword") || !newUser.toString().contains("cnumber_credit_card")){
             jsonResponse.put("codeUser", 401);
             jsonResponse.put("messageUser","[UserImplement] some name within the JSON is not valid");
         }else{
@@ -74,6 +74,7 @@ public class UserImplements implements UserRepository{
                 userM.setCsurnames(newUser.getString("csurnames"));
                 userM.setCnickname(newUser.getString("cnickname"));
                 userM.setCemail(newUser.getString("cemail"));
+                userM.setCPhone(newUser.getString("cphone"));
                 userM.setCpassword(newUser.getString("cpassword"));
                 userM.setNrole(2);
                 userM.setNid_Address(nid_address);

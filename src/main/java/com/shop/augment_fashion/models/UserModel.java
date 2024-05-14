@@ -34,6 +34,9 @@ public class UserModel {
     @Setter @Getter @Column(name="CEMAIL")
     private String cemail;
 
+    @Setter @Getter @Column(name="CPHONE")
+    private String cphone;
+
     @Setter @Getter @Column(name="CPASSWORD")
     private String cpassword;
 

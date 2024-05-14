@@ -5,7 +5,7 @@ import java.util.List;
 import com.shop.augment_fashion.models.ClothesModel;
 
 public interface ClothesRepository{
-    void addClothes(String newClothes);
+    String addClothes(JSONObject newClothes, JSONObject jsonResponse);
 
     List<ClothesModel> obtainClothes(int nid_clothes);
 
