@@ -10,7 +10,7 @@ import com.shop.augment_fashion.models.UserModel;
 public interface UserRepository {
     List<UserModel> getUsers();
 
-    UserModel getUser(int nid_user);
+    JSONObject getUser(JSONObject jsonUser, JSONObject jsonResponse);
 
     void delUser(int nid_user);
 

@@ -102,7 +102,10 @@ public class AddressImplements implements AddressRepository {
             }
         }catch(JSONException e){
             jsonResponse.put("codeAddress", 400);
-            jsonResponse.put("messageAddress","[AddressImplement] JSONException");
+            jsonResponse.put("messageAddress","[AddressImplement] JSONException, There was an error reading the JSON");
+        }catch(Exception e){
+            jsonResponse.put("codeAddress", 400);
+            jsonResponse.put("messageAddress","[AddressImplement] Unexpected Error");
         }
         return jsonResponse;
     }

@@ -1,7 +1,5 @@
 package com.shop.augment_fashion.controllers;
 
-import java.util.List;
-
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.shop.augment_fashion.models.UserModel;
 import com.shop.augment_fashion.repositories.AddressRepository;
 import com.shop.augment_fashion.repositories.UserRepository;
 
@@ -27,7 +24,7 @@ public class UserController {
     @Autowired
     private AddressRepository address;
 
-    @RequestMapping(value = "/Users",method=RequestMethod.POST)
+    @RequestMapping(value = "/login",method=RequestMethod.POST)
     public String insertUser(@RequestBody String newUser){
         JSONObject jsonUser, jsonAddress, jsonResponse;
         jsonUser=new JSONObject(newUser);
@@ -44,14 +41,19 @@ public class UserController {
         return jsonResponse.toString();
     }
 
-    @RequestMapping(value = "/Users",method=RequestMethod.GET)
-    public List<UserModel> getUsers(){
-        return user.getUsers();
+    @RequestMapping(value = "/access",method=RequestMethod.POST)
+    public String getUsers(@RequestBody String accessUser){
+        JSONObject jsonResponse=new JSONObject();
+
+        
+
+        return jsonResponse.toString();
     }
 
-    @RequestMapping(value = "/Users/{nid_user}",method=RequestMethod.GET)
-    public UserModel getUser(@PathVariable int nid_user){
-        return user.getUser(nid_user);
+    @RequestMapping(value = "/Access",method=RequestMethod.POST)
+    public String getUser(@RequestBody String newUser){
+
+        return null;
     }
 
     @RequestMapping(value = "/Users/{nid_user}",method=RequestMethod.DELETE)
