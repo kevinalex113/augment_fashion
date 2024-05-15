@@ -52,6 +52,7 @@ public class UserImplements implements UserRepository{
     @Transactional
     @SuppressWarnings("unchecked")
     public JSONObject newUser(JSONObject newUser, int nid_address, JSONObject jsonResponse){
+        try{
         if(!newUser.toString().contains("cfirst_names") || !newUser.toString().contains("csurnames") || !newUser.toString().contains("cnickname") || !newUser.toString().contains("cpassword") || !newUser.toString().contains("cnumber_credit_card")){
             jsonResponse.put("codeUser", 401);
             jsonResponse.put("messageUser","[UserImplement] some name within the JSON is not valid");
