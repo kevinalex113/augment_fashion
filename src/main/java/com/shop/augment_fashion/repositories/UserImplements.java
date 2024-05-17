@@ -72,16 +72,16 @@ public class UserImplements implements UserRepository{
                 jsonResponse.put("codeUser", 406);
                 jsonResponse.put("messageUser","[UserImplement] The nickname already exists");
             }else{
-                UserModel userM = new UserModel();
-                userM.setCfirst_name(newUser.getString("cfirst_names"));
-                userM.setCsurnames(newUser.getString("csurnames"));
-                userM.setCnickname(newUser.getString("cnickname"));
-                userM.setCemail(newUser.getString("cemail"));
-                userM.setCpassword(newUser.getString("cpassword"));
-                userM.setNrole(2);
-                userM.setNid_Address(nid_address);
-                userM.setCnumber_credit_card(newUser.getString("cnumber_credit_card"));
-                userM.setBenable(true);
+                    UserModel userM = new UserModel();
+                    userM.setCfirst_name(newUser.getString("cfirst_names"));
+                    userM.setCsurnames(newUser.getString("csurnames"));
+                    userM.setCnickname(newUser.getString("cnickname"));
+                    userM.setCemail(newUser.getString("cemail"));
+                    userM.setCpassword(newUser.getString("cpassword"));
+                    userM.setNrole(2);
+                    userM.setNid_Address(nid_address);
+                    userM.setCnumber_credit_card(newUser.getString("cnumber_credit_card"));
+                    userM.setBenable(true);
 
                     entityManager.merge(userM);
 
