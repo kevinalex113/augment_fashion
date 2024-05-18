@@ -78,6 +78,7 @@ public class UserImplements implements UserRepository{
                     userM.setCnickname(newUser.getString("cnickname"));
                     userM.setCemail(newUser.getString("cemail"));
                     userM.setCpassword(newUser.getString("cpassword"));
+                    userM.setCphone(newUser.getString("cphone"));
                     userM.setNrole(2);
                     userM.setNid_Address(nid_address);
                     userM.setCnumber_credit_card(newUser.getString("cnumber_credit_card"));

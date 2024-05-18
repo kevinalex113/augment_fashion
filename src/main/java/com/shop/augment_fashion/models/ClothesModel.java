@@ -22,6 +22,9 @@ public class ClothesModel {
     @Setter @Getter @Column(name="NID_CLOTHES")
     private int nid_clothes;
 
+    @Setter @Getter @Column(name="CIMAGE")
+    private String cimage;
+
     @Setter @Getter @Column(name="CDESCRIPTION")
     private String cdescription;
 

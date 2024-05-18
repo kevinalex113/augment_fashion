@@ -5,7 +5,7 @@ import org.json.JSONObject;
 public interface ClothesRepository{
     JSONObject addClothes(JSONObject newClothes, JSONObject jsonResponse);
 
-/*    List<ClothesModel> obtainClothes(int nid_clothes);
+/*    JSONObject obtainClothes();
 
     void updateClothes(int nid_clothes);
 
