@@ -54,11 +54,26 @@ public class ClothesImplements implements ClothesRepository{
                     clothes.setNstock(newClothes.getInt("nstock"));
 
                     entityManager.merge(clothes);
+
+                    queryClothes = "FROM ClothesModel WHERE "+
+                    "cdescription = '" + newClothes.getString("cdescription") +
+                    "' AND cmaterial = '"+ newClothes.getString("cmaterial") +
+                    "' AND ccolor = '" + newClothes.getString("ccolor") +
+                    "' AND ctype_clothes = '" + newClothes.getString("ctype_clothes") +
+                    "' AND csize = '"+ newClothes.getString("csize") +
+                    "' AND fprice = " + newClothes.getFloat("fprice") +
+                    " AND nstock = " + newClothes.getInt("nstock") + 
+                    " AND benable = True";
+
+                    lstClothes = entityManager.createQuery(queryClothes).getResultList();
+
                     jsonResponse.put("codeClothes", 200);
-                    jsonResponse.put("messageClothes","[ClothesImplement] Succesful clothes created");
+                    jsonResponse.put("messageClothes","[ClothesImplement] Succesful clothes inserted");
+                    jsonResponse.put("nid_Clothes", lstClothes.get(0).getNid_clothes());
                 }else{
                     jsonResponse.put("codeClothes", 200);
                     jsonResponse.put("messageClothes","[ClothesImplement] Succesful clothes obtained");
+                    jsonResponse.put("nid_Clothes", lstClothes.get(0).getNid_clothes());
                 }
             }
         }catch(JSONException e){
