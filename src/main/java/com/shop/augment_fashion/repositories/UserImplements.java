@@ -1,5 +1,8 @@
 package com.shop.augment_fashion.repositories;
 
+//import de.mkammerer.argon2.Argon2;
+//import de.mkammerer.argon2.Argon2Factory;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -72,6 +75,8 @@ public class UserImplements implements UserRepository{
                 jsonResponse.put("codeUser", 406);
                 jsonResponse.put("messageUser","[UserImplement] The nickname already exists");
             }else{
+                    //Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+                    //String hash = argon2.hash(1, 1024, 1, newUser.getString("cpassword"));
                     UserModel userM = new UserModel();
                     userM.setCfirst_name(newUser.getString("cfirst_names"));
                     userM.setCsurnames(newUser.getString("csurnames"));
