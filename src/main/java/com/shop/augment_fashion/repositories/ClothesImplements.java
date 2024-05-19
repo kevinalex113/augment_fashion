@@ -2,6 +2,7 @@ package com.shop.augment_fashion.repositories;
 
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
@@ -85,5 +86,51 @@ public class ClothesImplements implements ClothesRepository{
         }
 
         return jsonResponse;
+    }
+
+    @Override 
+    @SuppressWarnings("unchecked")
+    public JSONArray obtainClothes(){
+        //String queryClothes = "SELECT cdescription, cmaterial, ccolor, ctype_clothes FROM ClothesModel WHERE benable = True GROUP BY cdescription, cmaterial, ccolor, ctype_clothes";
+        String queryClothes = "FROM ClothesModel WHERE benable = True";
+        List<ClothesModel> lstClothes = entityManager.createQuery(queryClothes).getResultList();
+
+        /*String querySizes = "FROM ClothesModel WHERE "+
+        "cdescription = '"+ lstClothes.get(0).getCdescription() +
+        "' AND cmaterial = '"+ lstClothes.get(0).getCmaterial() +
+        "' AND ccolor = '" + lstClothes.get(0).getCcolor() +
+        "' AND ctype_clothes = '" + lstClothes.get(0).getCtype_clothes() +
+        "' AND benable = True";
+        List<ClothesModel> lstSizes = entityManager.createQuery(querySizes).getResultList();
+        
+        System.out.println(lstSizes.size());*/
+        JSONObject jsonAux = new JSONObject();
+        JSONArray jsonArrayResponse =  new JSONArray();
+        System.out.println(lstClothes.size());
+        //ClothesModel auxClothes = new ClothesModel();
+        for(ClothesModel i : lstClothes){
+            /*for(ClothesModel j : lstClothes){ 
+
+            }*/
+            jsonAux.put("cimage", i.getCimage());
+            jsonAux.put("cdescription", i.getCdescription());
+            jsonAux.put("cmaterial", i.getCmaterial());
+            jsonAux.put("ccolor", i.getCcolor());
+            jsonAux.put("ctype_clothes",i.getCtype_clothes());
+            jsonAux.put("csize", i.getCsize());
+            jsonAux.put("fprice", i.getFprice());
+            jsonAux.put("nstock", i.getNstock());
+            
+            jsonArrayResponse.put(jsonAux);
+        }
+        /*System.out.println(lstClothes.get(0).getCdescription());
+        System.out.println(lstClothes.get(0).getCmaterial());
+        System.out.println(lstClothes.get(0).getCcolor());
+        System.out.println(lstClothes.get(0).getCtype_clothes());*/
+
+
+        
+
+        return jsonArrayResponse;
     }
 }

@@ -26,21 +26,26 @@ public class CategoriesImplements implements CategoriesRepository{
     @Transactional
     public JSONObject addCategory(JSONArray lstcategories, int nid_clothes, JSONObject jsonResponse){
         try{
-        CategoriesModelPK categoryPK = new CategoriesModelPK();
-        CategoriesModel category = new CategoriesModel();
-        for(int i = 0; i<lstcategories.length(); i++){
-            categoryPK.setNid_clothes(nid_clothes);
-            categoryPK.setCcategory(lstcategories.get(i).toString());
 
-            category.setId(categoryPK);
-            category.setBenable(true);
+            CategoriesModelPK categoryPK = new CategoriesModelPK();
+            CategoriesModel category = new CategoriesModel();
+            for(int i = 0; i<lstcategories.length(); i++){
+                
+                categoryPK.setNid_clothes(nid_clothes);
+                categoryPK.setCcategory(lstcategories.get(i).toString());
 
-            entityManager.merge(category);
+                category.setId(categoryPK);
+                category.setBenable(true);
+
+                entityManager.merge(category);
+            }
+            jsonResponse.put("CategoriesCode", 200);
+            jsonResponse.put("CategoriesMessage", "[CategoriesImplements] Categories created");
+
+        }catch(JSONException e){
+            jsonResponse.put("CategoriesCode", 401);
+            jsonResponse.put("CategoriesMessage", "[CategoriesImplements] Unexpected Error");
         }
-
-    }catch(JSONException e){
-        
-    }
         return jsonResponse;
     }
 }

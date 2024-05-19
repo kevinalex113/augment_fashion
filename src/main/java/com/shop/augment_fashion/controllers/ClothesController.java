@@ -1,5 +1,6 @@
 package com.shop.augment_fashion.controllers;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,6 +42,12 @@ public class ClothesController {
         
 
         return jsonResponse.toString();
+    }
+
+    @RequestMapping(value = "/Clothes",method=RequestMethod.GET)
+    public String obtainClothes(){
+        JSONArray jsonArrayResponse = clothes.obtainClothes();
+        return jsonArrayResponse.toString();
     }
 
 }
