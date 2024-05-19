@@ -28,15 +28,30 @@ public class UserController {
     public String insertUser(@RequestBody String newUser){
         JSONObject jsonUser, jsonAddress, jsonResponse;
         jsonUser=new JSONObject(newUser);
-        jsonAddress= jsonUser.getJSONObject("oaddress");
-        jsonResponse=address.newAddress(jsonAddress, new JSONObject());
+        if(jsonUser.toString().contains("oaddress")){
+            jsonAddress= jsonUser.getJSONObject("oaddress");
+            jsonResponse=address.newAddress(jsonAddress, new JSONObject());
+        }else{
+            jsonAddress= new JSONObject();
+            jsonAddress.put("coutdoor_number","none");
+            jsonAddress.put("cinterior_number","none");
+            jsonAddress.put("cstreet","none");
+            jsonAddress.put("ccologne","none");
+            jsonAddress.put("ctown_hall","none");
+            jsonAddress.put("cstate","none");
+            jsonAddress.put("ccountry","none");
+
+            jsonResponse=address.newAddress(jsonAddress, new JSONObject());
+        }
+
         if(jsonResponse.getInt("codeAddress")==200){
             int valor = jsonResponse.getInt("nid_address");
             jsonResponse=user.newUser(jsonUser,valor, jsonResponse);
         }else{
             jsonResponse.put("codeController",400);
-            jsonResponse.put("messageController", "[UsserController] nid_address was not obtained due to some error in the creation of the address object ");
+            jsonResponse.put("messageController", "[UserController] nid_address was not obtained due to some error in the creation of the address object ");
         }
+        
 
         return jsonResponse.toString();
     }
