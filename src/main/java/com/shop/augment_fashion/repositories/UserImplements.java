@@ -1,13 +1,11 @@
 package com.shop.augment_fashion.repositories;
 
-//import de.mkammerer.argon2.Argon2;
-//import de.mkammerer.argon2.Argon2Factory;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+//import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.shop.augment_fashion.models.UserModel;
@@ -75,13 +73,17 @@ public class UserImplements implements UserRepository{
                 jsonResponse.put("codeUser", 406);
                 jsonResponse.put("messageUser","[UserImplement] The nickname already exists");
             }else{
-                    //Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-                    //String hash = argon2.hash(1, 1024, 1, newUser.getString("cpassword"));
+                    
                     UserModel userM = new UserModel();
                     userM.setCfirst_name(newUser.getString("cfirst_names"));
                     userM.setCsurnames(newUser.getString("csurnames"));
                     userM.setCnickname(newUser.getString("cnickname"));
                     userM.setCemail(newUser.getString("cemail"));
+
+                    //String password = newUser.getString("cpassword");
+                    //Argon2PasswordEncoder arrSpringSecurity = new Argon2PasswordEncoder(16, 32, 1, 60000, 10);
+                    //String hasheo = arrSpringSecurity.encode(password);
+
                     userM.setCpassword(newUser.getString("cpassword"));
                     userM.setCphone(newUser.getString("cphone"));
                     userM.setNrole(2);

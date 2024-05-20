@@ -47,7 +47,9 @@ public class ClothesController {
     @RequestMapping(value = "/Clothes",method=RequestMethod.GET)
     public String obtainClothes(){
         JSONArray jsonArrayResponse = clothes.obtainClothes();
-        return jsonArrayResponse.toString();
+        JSONObject jsonResponse = new JSONObject();
+        jsonResponse.put("products",jsonArrayResponse);
+        return jsonResponse.toString();
     }
 
 }
