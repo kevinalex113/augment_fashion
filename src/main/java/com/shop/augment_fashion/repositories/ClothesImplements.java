@@ -104,7 +104,7 @@ public class ClothesImplements implements ClothesRepository{
         List<ClothesModel> lstSizes = entityManager.createQuery(querySizes).getResultList();
         
         System.out.println(lstSizes.size());*/
-        JSONObject jsonAux = new JSONObject();
+        JSONObject jsonAux; 
         JSONArray jsonArrayResponse =  new JSONArray();
         System.out.println(lstClothes.size());
         //ClothesModel auxClothes = new ClothesModel();
@@ -112,6 +112,7 @@ public class ClothesImplements implements ClothesRepository{
             /*for(ClothesModel j : lstClothes){ 
 
             }*/
+            jsonAux = new JSONObject();
             jsonAux.put("cimage", i.getCimage());
             jsonAux.put("cdescription", i.getCdescription());
             jsonAux.put("cmaterial", i.getCmaterial());
