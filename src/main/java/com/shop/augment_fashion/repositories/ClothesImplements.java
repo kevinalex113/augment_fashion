@@ -119,6 +119,7 @@ public class ClothesImplements implements ClothesRepository{
             jsonAux.put("ccolor", i.getCcolor());
             jsonAux.put("ctype_clothes",i.getCtype_clothes());
             jsonAux.put("csize", i.getCsize());
+            jsonAux.put("nid_clothes", i.getNid_clothes());
             jsonAux.put("fprice", i.getFprice());
             jsonAux.put("nstock", i.getNstock());
             
